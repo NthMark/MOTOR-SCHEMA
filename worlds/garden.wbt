@@ -1,0 +1,142 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/factory/containers/protos/WoodenBox.proto"
+
+WorldInfo {
+  basicTimeStep 16
+}
+Viewpoint {
+  orientation 0.5724143698004442 0.09980958820302777 -0.8138672098989504 3.525168511377806
+  position 0.7298705643072247 -0.26974919194769864 1.3482261460011513
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0 0.01 0
+  floorSize 10 10
+}
+Robot {
+  translation 0 0 0.04
+  children [
+    DEF Body Shape {
+      appearance PBRAppearance {
+        baseColor 0.164706 0.8 0.207843
+        roughness 1
+        metalness 0
+      }
+      geometry Cylinder {
+        height 0.08
+        radius 0.045
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor -0.045 0 -0.017
+      }
+      device [
+        RotationalMotor {
+          name "motor_left"
+        }
+      ]
+      endPoint Solid {
+        translation -0.045000000000000054 -1.5451106879453376e-06 -0.01699994751704647
+        rotation -7.553190113951959e-12 -0.9999999999999999 7.559001770499217e-12 4.713185307385886
+        children [
+          DEF Wheel Shape {
+            appearance PBRAppearance {
+            }
+            geometry Cylinder {
+              height 0.025
+              radius 0.025
+            }
+          }
+        ]
+        boundingObject USE Wheel
+        physics DEF Physics_wh Physics {
+        }
+      }
+    }
+    DistanceSensor {
+      translation 0.015 -0.045 0.02
+      rotation 0 0 1 -1.37
+      children [
+        DEF Sensor Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.005 0.005 0.005
+          }
+        }
+      ]
+      name "sensor_right"
+      boundingObject USE Sensor
+      physics Physics {
+      }
+    }
+    DistanceSensor {
+      translation -0.015 -0.045 0.02
+      rotation 0 0 1 -1.77
+      children [
+        DEF Sensor Shape {
+          appearance PBRAppearance {
+          }
+          geometry Box {
+            size 0.005 0.005 0.005
+          }
+        }
+      ]
+      name "sensor_left"
+      boundingObject USE Sensor
+      physics Physics {
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        anchor 0.045 0 -0.017
+      }
+      device [
+        RotationalMotor {
+          name "motor_right"
+        }
+      ]
+      endPoint Solid {
+        translation 0.04500000000000002 -3.8185858693635274e-07 -0.01699994908652839
+        rotation -7.553190113951959e-12 -0.9999999999999999 7.55868762690207e-12 4.713185307385886
+        children [
+          DEF Wheel Shape {
+            appearance PBRAppearance {
+            }
+            geometry Cylinder {
+              height 0.025
+              radius 0.025
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE Wheel
+        physics DEF Physics_wh Physics {
+        }
+      }
+    }
+  ]
+  controller "EPuckGoForward_py"
+}
+WoodenBox {
+  translation 1.58081 -3.13982 0.05
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation 0.264298 0.352518 0.05
+  name "wooden box(1)"
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation -0.60902 -1.21737 0.05
+  name "wooden box(2)"
+  size 0.1 0.1 0.1
+}
